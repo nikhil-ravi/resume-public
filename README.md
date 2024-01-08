@@ -4,7 +4,8 @@ Welcome to the public version of my resume repository! This repository is a stri
 
 ## Accessing the Resume
 
-The public resume is available in both PDF and DOCX formats for easy accessibility. You can find the latest releases [here](https://github.com/nikhil-ravi/resume-public/releases/latest). Feel free to download and review the document.
+> [!IMPORTANT] 
+>  The `resume.md` file in this public repository is provided as a template and is not regularly updated. If you are interested in the most recent version of my resume, please refer to the [latest releases](https://github.com/nikhil-ravi/resume-public/releases/latest), where the public resume is available in both PDF and DOCX formats for easy accessibility. The releases contain up-to-date information and are intended for accurate representation.
 
 ## How it Differs from the Private Repository
 
