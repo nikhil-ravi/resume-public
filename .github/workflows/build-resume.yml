@@ -58,4 +58,4 @@ jobs:
         run: |
           git config --global user.email "nr337@cornell.edu"
           git config --global user.name "Nikhil Ravi"
-          gh release create ${{ env.TAG_NAME }} --title ${{ env.TAG_NAME }} output/* -R ${{ env.PUBLIC_REPO_URL }}
+          gh release create ${{ env.TAG_NAME }} --title ${{ env.TAG_NAME }} output/* -R ${{ vars.PUBLIC_REPO_URL }}
