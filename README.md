@@ -13,16 +13,17 @@ The public repository serves as a more accessible version of my resume. It omits
 
 ## Usage
 
-For those who would like to implement a similar workflow, i.e., a private resume with all the information written completely in Markdown and exported to both PDF and DOCX formats using pandoc, and a public resume with information marked as private removed, then the contents of this repository should get you there. 
+For those interested in implementing a similar workflow—maintaining both a private resume with complete information and a public resume with sensitive details removed—follow these steps:
 
 ### Local development
+1. Fork this repository and clone it to your local machine.
 
-1. On Ubuntu, first install the dependencies (might need sudo):
+2. Install the necessary dependencies (on Ubuntu):
   ```bash
   apt-get update
   apt-get install -y git make wget texlive-xetex
   ```
-  We also need to install pandoc. The latest version of pandoc is available at [jgm/pandoc](https://github.com/jgm/pandoc/releases). To install the latest version of pandoc, run the following commands:
+  Install Pandoc using the latest version available at [jgm/pandoc](https://github.com/jgm/pandoc/releases). Replace the version number in the commands below:
   ```bash
   wget https://github.com/jgm/pandoc/releases/download/3.1.11.1/pandoc-3.1.11.1-1-amd64.deb
   dpkg -i pandoc-3.1.11.1-1-amd64.deb
@@ -30,28 +31,25 @@ For those who would like to implement a similar workflow, i.e., a private resume
   ```
   Make sure to replace the version number in the above commands with the latest version of pandoc.  
   
-2. Edit the `resume.md` file to your liking. If you want to hide something in the public release, simply enclose that part of the text in HTML `span` tags with a class name of `privatize`:
+3. Edit the `resume.md` file to your liking. To hide information in the public release, enclose that part of the text in HTML `span` tags with a class name of `privatize`:
   ```md
   # Nikhil Ravi
   
   New York, NY | <span class="privatize">1 (800) 800 8009 |</span> LinkedIn | GitHub
   ```
-3. Then run:
+4. Run t:
   ```bash
   make all BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD) PRIVATIZE=true
   ```
   - The BRANCH_NAME variable is used to name the output files.
-  - The PRIVATIZE variable is used to determine whether to include the phone number and email address in the output files.
-      - Set PRIVATE to true to remove the phone number and email address and generate the public version of the resume.
-      - Set PRIVATE to false to include the phone number and email address and generate the private version of the resume.  
-  This will create the PDF and DOCX files in the `output` directory.   
-  
-4. Once you are done editing, create two repositories, one private and the other public.  
-5. Provide `Read and Write` permissions to GitHub workflows under `Repository Settings > Actions > General > Workflow permissions`.  
-6. Create a Fine grained Personal Access Token under `Settings > Developer Settings > Personal access tokens > Fine-grained tokens` and provide it access to both the repositories and enable Read and Write permissions for `Actions` and `Contents`.  
-7. Add this token as a repository secret for the private repository under `Secrets and variables > Actions > Repository Secrets` and give it the name `RELEASE_REPO_SECRET`.  
-8. Add the url of the public repository as an environment variable unde `Secrets and variables > Actions > Repository Variables` and give it the name `PUBLIC_REPO_URL`.  
-9. Commit and push your changes to your private repository. This will start the workflow in `.github/workflows/build-resume.yml`, and release the private and public resumes on their respective repositories.  
+  - The PRIVATIZE variable, when set to true, removes the information enclosed in the `span` tags with the `privatize` class name, generating the public version of the resume.
+5. This will create the PDF and DOCX files in the `output` directory.     
+6. Once done editing, create two repositories, one private and the other public. 
+7. Enable GitHub Actions in the private repository and provide `Read and Write` permissions to GitHub workflows under Repository `Settings > Actions > General > Workflow permissions`.  
+8. Create a Fine-grained Personal Access Token under `Settings > Developer Settings > Personal access tokens > Fine-grained tokens` with access to both repositories. Enable `Read and Write` permissions for `Actions` and `Contents`.  
+9. Add this token as a repository secret for the private repository under `Secrets and variables > Actions > Repository Secrets` with the name `RELEASE_REPO_SECRET`.  
+10. Add the URL of the public repository as an environment variable under `Secrets and variables > Actions > Repository Variables` with the name `PUBLIC_REPO_URL`.  
+11. Commit and push your changes to the private repository. This will start the workflow in `.github/workflows/build-resume.yml`, and release the private and public resumes on their respective repositories.  
 
 ### Auto compile on save with VS Code
 
@@ -79,3 +77,6 @@ Then push the image to Docker Hub:
 docker compose push resume
 ```
 
+## Acknowledgements
+
+I used dunkbing's [resume](https://github.com/dunkbing/dunkbing) as a starting point for this project after seeing it on [Dev.to](https://dev.to/dunkbing/managing-my-resume-with-git-a-version-control-approach-7hk).

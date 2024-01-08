@@ -1,0 +1,6 @@
+services:
+  resume:
+    image: muggle7/resume
+    build:
+      context: .
+      dockerfile: Dockerfile

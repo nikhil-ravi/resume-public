@@ -1,0 +1,11 @@
+{
+  "emeraldwalk.runonsave": {
+    "commands": [
+      {
+        "match": "resume.md",
+        "isAsync": true,
+        "cmd": "make all BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD) PRIVATIZE=false"
+      }
+    ]
+  }
+}
